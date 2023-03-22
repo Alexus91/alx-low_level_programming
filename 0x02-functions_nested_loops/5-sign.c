@@ -1,17 +1,17 @@
 #include "main.h"
 /**
  * print_sign - prints sing of number
- * @a: the number to be checked
- * return: 1 for positive num, -1 for negative or zero for anything eles
+ * @n: the number to be checked
+ * Return: 1 for positive num, -1 for negative or zero for anything eles
  */
-int print_sign(int a)
+int print_sign(int n)
 {
-	if (a > 0)
+	if (n > 0)
 	{
 		_putchar(43);
 		return (1);
 	}
-	else if (a < 0)
+	else if (n < 0)
 	{
 		_putchar(45);
 		return (-1);
