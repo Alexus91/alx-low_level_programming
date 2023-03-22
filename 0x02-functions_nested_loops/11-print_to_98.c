@@ -12,7 +12,7 @@ void print_to_98(int n)
 
 	if (n <= 98)
 	{
-		for (n = x; x < 98; x++)
+		for (x = n; x < 98; x++)
 			printf("%d, ", x);
 	}
 	else
