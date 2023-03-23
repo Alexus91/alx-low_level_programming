@@ -7,11 +7,12 @@
  */
 int main(void)
 {
-       	int i, n;
+	int i, n;
+
 	long int f1 = 1, f2 = 2, nex;
-	
+
 	printf("%ld, %ld", f1, f2);
-	
+
 	for (i = 3; i <= 50; i++)
 	{
 		nex = f1 + f2;
