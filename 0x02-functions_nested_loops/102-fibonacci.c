@@ -7,7 +7,7 @@
  */
 int main(void)
 {
-	int i, n;
+	int i;
 
 	long int f1 = 1, f2 = 2, nex;
 
