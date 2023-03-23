@@ -1,31 +1,27 @@
 #include <stdio.h>
-#include "main.h"
 
 /*
  * main - finds and prints the sum of the even-valued
- * terms in the main sequence
+ * terms in the main sequence less than 4000
  *
- * Return: always 0
+ * Return: nothing
 */
 
 int main(void)
 {
-	int f1 = 1;
-	int f2 = 2;
-	int f3;
-	int sum = 2;
+	int a = 0;
+	long b = 1, c = 2, sum = c;
 
-	while (f2 <= 4000000)
+	while (c + b <= 4000000)
 	{
-		f3 = f1 + f2;
-		if (f3 % 2 == 0)
-		{
-			sum += f3;
-		}
-		f1 = f2;
-		f2 = f3;
+		c += b;
+		if (c % 2 == 0)
+
+		sum += c;
+		b = c - b;
+		++a;
 	}
 
-	printf("%d\n", sum);
+	printf("%ld\n", sum);
 	return (0);
 }
