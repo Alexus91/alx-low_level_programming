@@ -5,22 +5,34 @@
  *
  * Return: Always 0 (Success)
  */
-
 int main(void)
 {
-	int count;
-	long long x1 = 1, x2 = 2, x3;
+	unsigned long int i, b = 1, a = 2, l = 1000000000;
+	unsigned long int b1, b2, a1, a2;
 
-	printf("%lld, %lld", x1, x2);
+	printf("%lu", b);
 
-	for (count = 3; count <= 98; count++)
+	for (i = 1; i < 91; i++)
 	{
-		x3 = x1 + x2;
-		x1 = x2;
-		x2 = x3;
-		printf(", %lld", x3);
+		printf(", %lu", a);
+		a += b;
+		b = a - b;
+	}
+
+	b1 = b / l;
+	b2 = b % l;
+	a1 = a / l;
+	a2 = a % l;
+
+	for (i = 92; i < 99; ++i)
+	{
+		printf(", %lu", a1 + (a2 / l));
+		printf("%lu", a2 % l);
+		a1 += b1;
+		b1 = a1 - b1;
+		a2 += b2;
+		b2 = a2 - b2;
 	}
 	printf("\n");
 	return (0);
 }
-
