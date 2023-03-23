@@ -2,13 +2,13 @@
 #include "main.h"
 
 /*
- * fibonacci - finds and prints the sum of the even-valued
- * terms in the Fibonacci sequence
+ * main - finds and prints the sum of the even-valued
+ * terms in the main sequence
  *
  * Return: always 0
 */
 
-int fibonacci(void)
+int main(void)
 {
 	int f1 = 1;
 	int f2 = 2;
