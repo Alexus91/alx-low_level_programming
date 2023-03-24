@@ -24,10 +24,10 @@ int main(void)
 			printf(" FizzBuzz");
 		} else if (j == 1)
 		{
-			printf("%d",j);
+			printf("%d", j);
 		} else
 		{
-			printf(" %d",j);
+			printf(" %d", j);
 		}
 	}
 	printf("\n");
