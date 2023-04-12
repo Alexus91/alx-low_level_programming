@@ -5,7 +5,7 @@
  * array of integers.
  * @width: width input
  * @height: height input
- * Return: pointer to 2 dim. array
+ * Return: pointer to 2 D array
  */
 int **alloc_grid(int width, int height)
 {
@@ -23,7 +23,7 @@ int **alloc_grid(int width, int height)
 
 		return (NULL);
 
-	for (m = 0; m < height; m++)
+	for (i = 0; i < height; i++)
 	{
 		m[i] = malloc(sizeof(int) * width);
 		if (m[i] == NULL)
