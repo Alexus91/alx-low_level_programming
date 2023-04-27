@@ -1,16 +1,9 @@
-section .data
-    message db "Hello, Holberton!", 0Ah, 0
-
-section .text
-    global _start
-
-_start:
-    ; call printf to print message
-    mov rdi, message
-    xor rax, rax
-    call printf
-    
-    ; exit program
-    xor rax, rax
-    ret
-
+global   main
+	  extern    printf
+main:
+	  mov   edi, format
+	  xor   eax, eax
+	  call  printf
+	  mov   eax, 0
+	  ret
+format: db `Hello, Holberton\n`,0
