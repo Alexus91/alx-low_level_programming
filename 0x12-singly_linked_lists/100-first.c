@@ -2,6 +2,7 @@
 void first(void) __attribute__ ((constructor));
 /**
  * fisrt - print a sentence
+ * function is executed
  */
 void first(void)
 {
