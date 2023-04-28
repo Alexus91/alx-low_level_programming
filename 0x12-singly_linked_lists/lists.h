@@ -5,7 +5,7 @@
  * @str: string 
  * @nx: points to the next node
  */
-typedef struct list_sing
+typedef struct list_s
 {
 	char *str;
 	unsigned int len;
