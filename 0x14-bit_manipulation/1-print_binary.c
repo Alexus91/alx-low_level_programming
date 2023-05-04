@@ -13,7 +13,7 @@ void print_binary(unsigned long int n)
 	ct = 0;
 
 
-	for (ix = 16 ; ix >= 0; ix--)
+	for (ix = 16; ix >= 0; ix--)
 	{
 		presn_num = n >> ix;
 
