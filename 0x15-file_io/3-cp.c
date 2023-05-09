@@ -4,7 +4,6 @@
 
 char *buffer_creation(char *file);
 void close_f(int f);
-int coppyfile(int argc, char  *argv[]);
 /**
  * buffer_creation - alloction 1024 bytes for the buff
  * @file: name file buffer
@@ -14,14 +13,14 @@ int coppyfile(int argc, char  *argv[]);
 char *buffer_creation(char *file)
 {
 	const int BUFFER_SIZE = 1024;
-	char *buff = malloc(sizeof(char) * BUFFER_SIZE);
+	char *buffer = malloc(sizeof(char) * BUFFER_SIZE);
 
-	if (buff == NULL)
+	if (buffer == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
 		exit(99);
 	}
-	return (buff);
+	return (buffer);
 }
 /**
  * close_file - file descriptors
@@ -36,12 +35,12 @@ void close_file(int f)
 	}
 }
 /**
- * coppyfile - copies the contents from a file to an other one.
+ * main - copies the contents from a file to an other one.
  * @argc: number of arguments
  * @argv: array of pointers to arguments
  * Return: 0 (success)
  */
-int coppyfile(int argc, char  *argv[])
+int main(int argc, char  *argv[])
 {
 	int from, to, rd, wr;
 	char *buffer;
