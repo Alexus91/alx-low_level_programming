@@ -44,7 +44,7 @@ int main(int argc, char  *argv[])
 {
 	int from, to, rd, wr;
 	char *buffer;
-	
+
 	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "use: cp file_from file_to\n");
@@ -56,6 +56,7 @@ int main(int argc, char  *argv[])
 	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	do
+
 	{
 		if (from == -1 || rd == -1)
 		{
@@ -71,12 +72,14 @@ int main(int argc, char  *argv[])
 			exit(99);
 		}
 		rd = read(from, buffer, 1024);
-		to =open(argv[2], O_WRONLY | O_APPEND);
-	}while (rd > 0);
+		to = open(argv[2], O_WRONLY | O_APPEND);
+	}
+
+	while (rd > 0);
 
 	free(buffer);
 	close_file(from);
 	close_file(to);
-	
+
 	return (0);
 }
