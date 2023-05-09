@@ -53,29 +53,40 @@ int main(int argc, char  *argv[])
 	buffer = buffer_creation(argv[2]);
 	from = open(argv[1], O_RDONLY);
 	rd = read(from, buffer, 1024);
-	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 
-	do
-
+	if (from == -1)
 	{
-		if (from == -1 || rd == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-			free(buffer);
-			exit(98);
-		}
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
+	}
+	to = open(argv[2], O_WRONLY | O_APPEND);
+
+	if (to == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		exit(99);
+	}
+
+	buffer = malloc(sizeof(char) * 1024);
+	if (!buffer)
+	{
+		free(buffer);
+		exit(100);
+	}
+	rd = read(from, buffer, 1024);
+
+	while (rd > 0)
+	{
 		wr = write(to, buffer, rd);
-		if (to == -1 || wr == -1)
+		if (wr == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			free(buffer);
 			exit(99);
 		}
 		rd = read(from, buffer, 1024);
-		to = open(argv[2], O_WRONLY | O_APPEND);
 	}
-
-	while (rd > 0);
 
 	free(buffer);
 	close_file(from);
