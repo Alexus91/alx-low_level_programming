@@ -12,15 +12,15 @@ void close_f(int f);
  */
 char *buffer_creation(char *file)
 {
-	const int BUFFER_SIZE = 1024;
-	char *buffer = malloc(sizeof(char) * BUFFER_SIZE);
 
-	if (buffer == NULL)
+	char *buff = malloc(sizeof(char) * 1024);
+
+	if (buff == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
 		exit(99);
 	}
-	return (buffer);
+	return (buff);
 }
 /**
  * close_file - file descriptors
@@ -43,52 +43,42 @@ void close_file(int f)
 int main(int argc, char  *argv[])
 {
 	int from, to, rd, wr;
-	char *buffer;
+	char *buff;
 
 	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "use: cp file_from file_to\n");
 		exit(97);
 	}
-	buffer = buffer_creation(argv[2]);
+	buff = buffer_creation(argv[2]);
 	from = open(argv[1], O_RDONLY);
-	rd = read(from, buffer, 1024);
+	rd = read(from, buff, 1024);
 	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
-	if (from == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		exit(98);
-	}
-	to = open(argv[2], O_WRONLY | O_APPEND);
+	do
 
-	if (to == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		exit(99);
-	}
-
-	buffer = malloc(sizeof(char) * 1024);
-	if (!buffer)
-	{
-		free(buffer);
-		exit(100);
-	}
-	rd = read(from, buffer, 1024);
-
-	while (rd > 0)
-	{
-		wr = write(to, buffer, rd);
-		if (wr == -1)
+		if (from == -1 || rd == -1)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-			free(buffer);
-			exit(99);
+
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		free(buff);
+		exit(98);
 		}
-		rd = read(from, buffer, 1024);
+		wr = write(to, buff, rd);
+		if (to == -1 || wr == -1)
+		{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		free(buff);
+		exit(99);
+		}
+		rd = read(from, buff, 1024);
+		to = open(argv[2], O_WRONLY | O_APPEND);
 	}
 
-	free(buffer);
+	while (rd > 0);
+
+	free(buff);
 	close_file(from);
 	close_file(to);
 
