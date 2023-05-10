@@ -12,8 +12,8 @@ void close_f(int f);
  */
 char *buffer_creation(char *file)
 {
-
-	char *buff = malloc(sizeof(char) * 1024);
+	const int size = 1024;
+	char *buff = malloc(sizeof(char) * size);
 
 	if (buff == NULL)
 	{
